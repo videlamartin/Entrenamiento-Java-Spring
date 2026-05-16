@@ -1,18 +1,10 @@
 package com.tallerwebi.dominio.exceptions;
 
-public class CombinacionRomanaInvalidaException extends Throwable {
+public class CombinacionRomanaInvalidaException extends Exception {
 
-  private String mensaje;
+  private static final long serialVersionUID = 1L;
 
   public CombinacionRomanaInvalidaException(String mensaje) {
-    this.mensaje = mensaje;
-  }
-
-  public String getMensaje() {
-    return mensaje;
-  }
-
-  public void setMensaje(String mensaje) {
-    this.mensaje = mensaje;
+    super(mensaje);
   }
 }

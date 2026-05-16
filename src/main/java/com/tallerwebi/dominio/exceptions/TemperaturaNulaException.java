@@ -1,18 +1,10 @@
 package com.tallerwebi.dominio.exceptions;
 
-public class TemperaturaNulaException extends Throwable {
+public class TemperaturaNulaException extends Exception {
 
-  private String mensaje;
+  private static final long serialVersionUID = 1L;
 
   public TemperaturaNulaException(String mensaje) {
-    this.mensaje = mensaje;
-  }
-
-  public String getMensaje() {
-    return mensaje;
-  }
-
-  public void setMensaje(String mensaje) {
-    this.mensaje = mensaje;
+    super(mensaje);
   }
 }

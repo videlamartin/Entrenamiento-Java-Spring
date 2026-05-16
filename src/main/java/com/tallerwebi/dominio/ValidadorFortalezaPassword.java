@@ -2,89 +2,58 @@ package com.tallerwebi.dominio;
 
 public class ValidadorFortalezaPassword {
 
-  public String validarFortaleza(String contrasenaAValidar) {
-    String resultado = null;
+  private static final int MINIMO_ESPECIALES_FUERTE = 2;
+  private static final int MINIMO_NUMEROS_FUERTE = 2;
+  private static final int LONGITUD_MINIMA = 8;
 
+  public String validarFortaleza(String contrasenaAValidar) {
     if (contrasenaAValidar == null || contrasenaAValidar.isEmpty()) {
       return "INVALIDA";
     }
-
-    if (contrasenaAValidar.length() <= 8) {
-      resultado = "DEBIL";
+    if (contrasenaAValidar.length() < LONGITUD_MINIMA) {
+      return "DEBIL";
     }
-
-    if (contrasenaAValidar.length() >= 8) {
-      resultado = "DEBIL";
-
-      if (tieneNumero(contrasenaAValidar) && tieneEspecial(contrasenaAValidar)) {
-        if (esFuerte(contrasenaAValidar)) {
-          resultado = "FUERTE";
-        } else {
-          resultado = "MEDIANA";
-        }
+    if (tieneNumero(contrasenaAValidar) && tieneEspecial(contrasenaAValidar)) {
+      if (esFuerte(contrasenaAValidar)) {
+        return "FUERTE";
       }
+      return "MEDIANA";
     }
-
-    return resultado;
+    return "DEBIL";
   }
 
   private boolean esFuerte(String contrasenaAValidar) {
-    boolean tieneMasDe2Numeros = tieneMasDe2Numeros(contrasenaAValidar);
-    boolean tieneMasDe2Especiales = tieneMasDe2Especiales(contrasenaAValidar);
-    return tieneMasDe2Numeros && tieneMasDe2Especiales;
+    return tieneMasDe2Numeros(contrasenaAValidar) && tieneMasDe2Especiales(contrasenaAValidar);
   }
 
   private boolean tieneMasDe2Especiales(String contrasenaAValidar) {
-    int contadorDeEspecial = 0;
-    boolean tieneMasDe2Especiales = false;
-    for (char c : contrasenaAValidar.toCharArray()) {
-      if (!Character.isDigit(c) && !Character.isLetter(c)) {
-        contadorDeEspecial++;
-      }
-    }
-
-    if (contadorDeEspecial >= 2) {
-      tieneMasDe2Especiales = true;
-    }
-
-    return tieneMasDe2Especiales;
+    long contador = contrasenaAValidar
+      .chars()
+      .filter(c -> !Character.isDigit(c) && !Character.isLetter(c))
+      .count();
+    return contador >= MINIMO_ESPECIALES_FUERTE;
   }
 
   private boolean tieneMasDe2Numeros(String contrasenaAValidar) {
-    int contadorDeNumero = 0;
-    boolean tieneMasDe2Numeros = false;
-    for (char c : contrasenaAValidar.toCharArray()) {
-      if (Character.isDigit(c)) {
-        contadorDeNumero++;
-      }
-    }
-
-    if (contadorDeNumero >= 2) {
-      tieneMasDe2Numeros = true;
-    }
-
-    return tieneMasDe2Numeros;
+    long contador = contrasenaAValidar.chars().filter(Character::isDigit).count();
+    return contador >= MINIMO_NUMEROS_FUERTE;
   }
 
   private boolean tieneEspecial(String contrasenaAValidar) {
-    boolean tieneEspecial = false;
-
     for (char c : contrasenaAValidar.toCharArray()) {
       if (!Character.isLetter(c) && !Character.isDigit(c)) {
-        tieneEspecial = true;
+        return true;
       }
     }
-    return tieneEspecial;
+    return false;
   }
 
   private boolean tieneNumero(String contrasenaAValidar) {
-    boolean tieneNumero = false;
-
     for (char c : contrasenaAValidar.toCharArray()) {
       if (Character.isDigit(c)) {
-        tieneNumero = true;
+        return true;
       }
     }
-    return tieneNumero;
+    return false;
   }
 }

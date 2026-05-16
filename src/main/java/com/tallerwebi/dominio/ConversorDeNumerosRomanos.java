@@ -3,8 +3,11 @@ package com.tallerwebi.dominio;
 import com.tallerwebi.dominio.exceptions.CombinacionRomanaInvalidaException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class ConversorDeNumerosRomanos {
+
+  private static final int MAXIMO_REPETICIONES = 3;
 
   private static final Map<Character, Integer> MAPA_ROMANOS = new HashMap<>();
 
@@ -23,36 +26,37 @@ public class ConversorDeNumerosRomanos {
     if (!caracteresValidos(romano)) {
       throw new CombinacionRomanaInvalidaException("La combinacion de números romanos es inválida");
     }
-
-    int total = 0;
-    int valorPrevio = 0;
-    int cont = 1;
-    int contMax = 1;
-
-    for (int i = romano.length() - 1; i >= 0; i--) {
-      int valorActual = MAPA_ROMANOS.get(romano.charAt(i));
-
-      if (valorActual < valorPrevio) {
-        total -= valorActual;
-      } else {
-        total += valorActual;
-      }
-
-      if (valorPrevio == valorActual) {
-        cont++;
-        if (cont > contMax) {
-          contMax = cont;
-        }
-      } else {
-        cont = 1;
-      }
-      valorPrevio = valorActual;
-    }
-
-    if (contMax > 3) {
+    if (tieneRepeticionesInvalidas(romano)) {
       throw new CombinacionRomanaInvalidaException("La combinacion de números romanos es inválida");
     }
-    return total;
+    return calcularTotal(romano);
+  }
+
+  private int calcularTotal(String romano) {
+    String invertido = new StringBuilder(romano).reverse().toString();
+    int[] state = { 0, 0 }; // state[0] = total, state[1] = valorPrevio
+    invertido
+      .chars()
+      .map(c -> MAPA_ROMANOS.get((char) c))
+      .forEach(valorActual -> {
+        if (valorActual < state[1]) {
+          state[0] -= valorActual;
+        } else {
+          state[0] += valorActual;
+        }
+        state[1] = valorActual;
+      });
+    return state[0];
+  }
+
+  private boolean tieneRepeticionesInvalidas(String romano) {
+    long maxRepeticiones = IntStream
+      .range(0, romano.length())
+      .filter(i ->
+        i == 0 || MAPA_ROMANOS.get(romano.charAt(i)).equals(MAPA_ROMANOS.get(romano.charAt(i - 1)))
+      )
+      .count();
+    return maxRepeticiones > MAXIMO_REPETICIONES;
   }
 
   private static boolean caracteresValidos(String romano) {

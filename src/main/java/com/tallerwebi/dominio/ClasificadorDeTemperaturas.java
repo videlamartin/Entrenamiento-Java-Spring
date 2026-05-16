@@ -1,64 +1,59 @@
 package com.tallerwebi.dominio;
 
 import com.tallerwebi.dominio.exceptions.TemperaturaNulaException;
-import net.bytebuddy.implementation.bytecode.Throw;
 
 public class ClasificadorDeTemperaturas {
 
+  private static final int LIMITE_CONGELANTE = 1;
+  private static final int LIMITE_FRIA = 15;
+  private static final int LIMITE_TEMPLADA = 25;
+  private static final int LIMITE_CALUROSA = 35;
+
   public String clasificarTemperatura(String temperatura, String escala)
     throws TemperaturaNulaException {
-    Integer temperaturaConvertida = null;
-    if (temperatura != null && esNumerico(temperatura)) {
-      temperaturaConvertida = Integer.parseInt(temperatura);
-    } else {
-      throw new TemperaturaNulaException("la temperatura ingreasada es nula");
+    if (temperatura == null || !esNumerico(temperatura)) {
+      throw new TemperaturaNulaException("la temperatura ingresada es nula");
     }
-    return clasificarTemperatura(temperaturaConvertida, escala);
+    return clasificarTemperatura(Integer.parseInt(temperatura), escala);
   }
 
   private boolean esNumerico(String temperatura) {
-    boolean valido = true;
     for (char c : temperatura.trim().replace(" ", "").toCharArray()) {
       if (Character.isLetter(c)) {
-        valido = false;
+        return false;
       }
     }
-    return valido;
+    return true;
   }
 
   public String clasificarTemperatura(Integer temperatura, String escala) {
-    String resultado = null;
-
-    if (temperatura != null && escala != null) {
-      if (escala.equals("C")) {
-        resultado = obtenerResulradoEnCelsius(temperatura);
-      }
-      if (escala.equals("F")) {
-        temperatura = convertirFahrenheitACelsius(temperatura);
-        resultado = obtenerResulradoEnCelsius(temperatura);
-      }
+    if (temperatura == null || escala == null) {
+      return null;
     }
-
-    return resultado;
+    if ("C".equals(escala)) {
+      return obtenerResultadoEnCelsius(temperatura);
+    }
+    if ("F".equals(escala)) {
+      return obtenerResultadoEnCelsius(convertirFahrenheitACelsius(temperatura));
+    }
+    return null;
   }
 
   private Integer convertirFahrenheitACelsius(Integer temperatura) {
     return (int) Math.round(((temperatura - 32) * 5.0) / 9.0);
   }
 
-  private static String obtenerResulradoEnCelsius(Integer temperatura) {
-    String resultado;
-    if (temperatura < 1) {
-      resultado = "CONGELANTE";
-    } else if (temperatura <= 15) {
-      resultado = "FRIA";
-    } else if (temperatura <= 25) {
-      resultado = "TEMPLADA";
-    } else if (temperatura <= 35) {
-      resultado = "CALUROSA";
+  private static String obtenerResultadoEnCelsius(Integer temperatura) {
+    if (temperatura < LIMITE_CONGELANTE) {
+      return "CONGELANTE";
+    } else if (temperatura <= LIMITE_FRIA) {
+      return "FRIA";
+    } else if (temperatura <= LIMITE_TEMPLADA) {
+      return "TEMPLADA";
+    } else if (temperatura <= LIMITE_CALUROSA) {
+      return "CALUROSA";
     } else {
-      resultado = "PELIGROSA";
+      return "PELIGROSA";
     }
-    return resultado;
   }
 }
