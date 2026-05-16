@@ -1,4 +1,3 @@
 package com.tallerwebi.dominio;
 
-public class ContactoTest {
-}
+public class ContactoTest {}
