@@ -1,0 +1,109 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background: linear-gradient(135deg,#111,#1b1b1b);
+}
+
+/* contenedor del form */
+form{
+    width:100%;
+    max-width:420px;
+
+    background: rgba(42,42,42,.95);
+
+    padding:40px;
+    border-radius:18px;
+
+    border-top:4px solid #dc1414;
+
+    box-shadow:
+            0 10px 40px rgba(0,0,0,.45),
+            0 0 30px rgba(220,20,20,.15);
+}
+
+/* título */
+h1{
+    color:#ff1a1a;
+    text-align:center;
+
+    margin-bottom:30px;
+    font-size:2rem;
+}
+
+/* labels */
+label{
+    display:block;
+
+    color:#d0c0a0;
+    font-size:.85rem;
+
+    margin-bottom:8px;
+    margin-top:18px;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* inputs */
+input,
+textarea{
+    width:100%;
+
+    padding:15px;
+
+    background:#333;
+    color:white;
+
+    border:none;
+    border-radius:10px;
+
+    outline:none;
+
+    font-size:1rem;
+
+    transition:.3s;
+}
+
+input:focus,
+textarea:focus{
+    box-shadow:0 0 0 2px #dc1414;
+}
+
+/* botón */
+button{
+    width:100%;
+
+    margin-top:28px;
+    padding:16px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#e60000;
+    color:white;
+
+    font-weight:bold;
+    font-size:1rem;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    background:#c40000;
+
+    box-shadow:0 0 20px rgba(220,20,20,.4);
+}
