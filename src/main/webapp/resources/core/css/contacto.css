@@ -1,0 +1,126 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background: linear-gradient(135deg,#111,#1b1b1b,#0f0f0f);
+}
+
+/* Título */
+h1{
+    color:#ff1a1a;
+    font-size:2rem;
+    margin-bottom:30px;
+    letter-spacing:1px;
+
+    text-shadow:0 0 15px rgba(255,0,0,.25);
+}
+
+/* Formulario */
+form{
+    width:100%;
+    max-width:450px;
+
+    background: rgba(42,42,42,.95);
+
+    padding:40px;
+    border-radius:18px;
+
+    border-top:4px solid #dc1414;
+
+    box-shadow:
+            0 10px 40px rgba(0,0,0,.45),
+            0 0 25px rgba(220,20,20,.15);
+
+    transition:.3s;
+}
+
+form:hover{
+    transform:translateY(-4px);
+}
+
+/* Labels */
+label{
+    display:block;
+
+    margin-bottom:8px;
+    margin-top:18px;
+
+    color:#cfcfcf;
+
+    font-size:.85rem;
+    font-weight:600;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* Inputs */
+input,
+textarea{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#333;
+    color:white;
+
+    font-size:1rem;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+input:focus,
+textarea:focus{
+    box-shadow:0 0 0 2px #dc1414;
+    background:#3a3a3a;
+}
+
+/* Botón */
+button{
+    width:100%;
+
+    margin-top:30px;
+    padding:15px;
+
+    border:none;
+    border-radius:10px;
+
+    background:#e60000;
+    color:white;
+
+    font-size:1rem;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    background:#c40000;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 0 20px rgba(220,20,20,.35);
+}

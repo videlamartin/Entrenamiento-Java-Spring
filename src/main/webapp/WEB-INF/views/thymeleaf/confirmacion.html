@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista de Confirmacion</title>
+    <link rel="stylesheet" th:href="@{/css/confirmacion.css}" />
+</head>
+<body>
+<h1>Gracias, <span th:text="${contacto.nombre}"></span>!</h1>
+<p>Tu mensaje: <span th:text="${contacto.mensaje}"></span></p>
+<p>Te responderemos a: <span th:text="${contacto.email}"></span></p>
+</body>
+</html>

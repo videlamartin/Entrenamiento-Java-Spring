@@ -1,0 +1,58 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+    padding:40px;
+
+    background: linear-gradient(135deg,#111,#1b1b1b,#0f0f0f);
+}
+
+/* Simula la card */
+body > *{
+    width:100%;
+    max-width:600px;
+}
+
+/* Título */
+h1{
+    text-align:center;
+
+    color:#ff1a1a;
+    font-size:2.2rem;
+
+    margin-bottom:10px;
+}
+
+/* Mensajes */
+p{
+    background: rgba(42,42,42,.95);
+
+    color:white;
+
+    padding:18px 25px;
+
+    border-radius:12px;
+
+    box-shadow:
+            0 8px 25px rgba(0,0,0,.4);
+
+    font-size:1rem;
+}
+
+/* Datos dinámicos */
+span{
+    color:#ff4d4d;
+    font-weight:bold;
+}
