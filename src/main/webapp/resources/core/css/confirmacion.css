@@ -1,74 +1,58 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background-color: #1a1a1a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+body{
+    font-family:'Segoe UI', sans-serif;
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+    padding:40px;
+
+    background: linear-gradient(135deg,#111,#1b1b1b,#0f0f0f);
 }
 
-.card {
-    background-color: #2a2a2a;
-    border-radius: 12px;
-    padding: 40px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 8px 32px rgba(220, 20, 20, 0.3);
-    border-top: 4px solid #dc1414;
-    text-align: center;
+/* Simula la card */
+body > *{
+    width:100%;
+    max-width:600px;
 }
 
-.icono {
-    font-size: 3rem;
-    margin-bottom: 16px;
+/* Título */
+h1{
+    text-align:center;
+
+    color:#ff1a1a;
+    font-size:2.2rem;
+
+    margin-bottom:10px;
 }
 
-h1 {
-    color: #dc1414;
-    font-size: 1.8rem;
-    margin-bottom: 24px;
+/* Mensajes */
+p{
+    background: rgba(42,42,42,.95);
+
+    color:white;
+
+    padding:18px 25px;
+
+    border-radius:12px;
+
+    box-shadow:
+            0 8px 25px rgba(0,0,0,.4);
+
+    font-size:1rem;
 }
 
-.info {
-    background-color: #333333;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    text-align: left;
-}
-
-.info span.label {
-    display: block;
-    color: #aaaaaa;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
-}
-
-.info span.valor {
-    color: #ffffff;
-    font-size: 1rem;
-}
-
-a {
-    display: inline-block;
-    margin-top: 24px;
-    color: #dc1414;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #b30000;
+/* Datos dinámicos */
+span{
+    color:#ff4d4d;
+    font-weight:bold;
 }
